@@ -1,0 +1,31 @@
+
+.modalContainer{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+
+.modalScreen{
+    width: 600px;
+    height: 350px;
+    background-color: #384252;
+    position: relative;
+    border-radius: 5px;
+    z-index: 4;
+
+}
+
+.btnClose{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    cursor: pointer;
+}

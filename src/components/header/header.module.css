@@ -1,0 +1,124 @@
+.navContainer a, .navAdmContainer a, .navMeContainer a{
+    color: #fff;
+}
+
+.navContainer a:hover, .navAdmContainer a:hover, .navMeContainer a:hover, .navContainer .menu li:hover{
+    color: #E9D6AF;
+}
+
+
+.navContainer{
+   display: flex;
+   flex-direction: row;
+   gap: 25px; 
+}
+
+.navMeContainer{
+    margin-right: 5px;
+    z-index: 2;
+}
+
+.navMeContainer a {
+    margin-right: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.navContainer .menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.navContainer ul li{
+    text-decoration: none;
+    list-style: none;
+    z-index: 2;
+}
+
+.navMeContainer a img{
+    margin-top: 5px;
+}
+
+
+
+.openMenu{
+    width: 180px;
+    height: 200px;
+    background-color: #252525;
+    visibility: visible;
+    position: absolute;
+    bottom: 1;
+    left: 1;
+}
+
+
+.closeMenu{
+    visibility: hidden;
+}
+
+
+.cadastrosMenu{
+    position: relative;
+}
+
+.menu{
+    z-index: 2;
+}
+
+.submenu{
+    height: 100px;
+    width: 170x;
+    padding: 10px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: absolute;
+    bottom: 1;
+    left: 1;
+    background-color: #2525259f;
+    z-index: 2;
+
+}
+
+.back{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0,0,0,0.0);
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.meList{
+    height: 100px;
+    width: 170x;
+    padding: 10px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    position: absolute;
+    bottom: 1;
+    left: 1;
+    background-color: #2525259f;
+    z-index: 2;
+    list-style: none;
+}
+
+
+@media(max-width: 620px){
+    .navContainer{
+        flex-direction: column;
+        gap: 2px;
+    }
+}
