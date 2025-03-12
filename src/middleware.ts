@@ -3,8 +3,6 @@ import { api } from './services/api';
 
 import { getCookieServer } from './lib/cookieServer';
 
-import { handleLogout } from './utils/leave';
-
 export async function middleware(req: NextRequest) {
 
     const { pathname } = req.nextUrl;

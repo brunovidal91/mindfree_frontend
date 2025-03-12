@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
@@ -6,10 +7,6 @@ import { redirect } from "next/navigation";
 
 import { cookies } from 'next/headers';
 
-
-
-
-
 interface User{
   email?: string,
   password?: string
@@ -17,7 +14,6 @@ interface User{
 
 
 export default function Home() {
-  
 
   
   async function handleLogin(formData: FormData){
@@ -65,6 +61,27 @@ export default function Home() {
         secure: process.env.NODE_ENV === "production" // só vai habilitar o https se estiver em produção
       })
 
+      // repassar os dados para o context --> salvar no localstorage
+
+    
+      
+
+      const user = {
+        id: response.data.id,
+        name: response.data.name,
+        email: response.data.email,
+        createdAt: response.data.createdAt
+      }
+
+      
+      
+    //  if( typeof window !== 'undefined'){
+    //   window.localStorage.setItem("@usr", JSON.stringify(user)); 
+    //   console.log("aki")
+    // } 
+
+
+
     }catch(error){
       console.log("Ocorreu um erro: " + error);
       return;
@@ -72,7 +89,7 @@ export default function Home() {
 
 
 
-    redirect("/dashboard")
+    redirect("/dashboard",)
   }
 
 

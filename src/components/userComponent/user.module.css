@@ -1,0 +1,91 @@
+
+.modalContainer{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+
+.modalScreen{
+    width: 600px;
+    height: 350px;
+    background-color: #384252;
+    position: relative;
+    border-radius: 5px;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.btnClose{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    cursor: pointer;
+}
+
+.formLogin{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 550px;
+    align-items: center;
+}
+
+.formLogin input[type="password"]{
+    width: 175px;
+    margin-top: 20px
+}
+
+.formLogin input[type="password"]:first-child{
+    margin-right: 30px;
+}
+
+.formLogin input, .formLogin label{
+    display: inline;
+}
+
+.formLogin label{
+    color: #fff;
+}
+
+.loginButton{
+    margin: 15px 0px 0px 20px;;
+    width: 150px;
+    padding: 5px;
+    background-color: #c0efd2;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.loginButton:hover, .PasswordButton:hover, .DeleteButton:hover{
+    opacity: 0.85;
+}
+
+
+.PasswordButton{
+    margin: 15px 0px 0px 20px;
+    width: 150px;
+    padding: 5px;
+    background-color: #e9d6af;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.DeleteButton{
+    margin: 15px 0px 0px 20px;
+    width: 150px;
+    padding: 5px;
+    background-color: #e25858;
+    border-radius: 5px;
+    cursor: pointer;
+}
