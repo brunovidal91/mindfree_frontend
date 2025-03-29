@@ -38,7 +38,7 @@ function Header(){
         admin: boolean,
     }
     
-    
+
     
 
     // const { user } = useContext(AppContext);
@@ -49,7 +49,7 @@ function Header(){
     const [showCategoryComponent, setShowCategoryComponent] = useState(false);
     const [showUserComponent, setShowUserComponent] = useState(false);
     const [showMe, setShowMe] = useState(false);
-    const [user, setUser] = useState({name: "", email: "", createdAt: "", admin: false});
+    const [user, setUser] = useState({id: "", name: "", email: "", createdAt: "", admin: false});
     
 
     
@@ -204,7 +204,7 @@ function Header(){
 
             { showCategoryComponent && <CategoryModal close={closeCategoryComponent}/>}
 
-            { showUserComponent && <UserMeModal close={closeUserComponent} data={user}/>}
+            { showUserComponent && <UserMeModal close={closeUserComponent} dados={user}/>}
         </>
     );
 }

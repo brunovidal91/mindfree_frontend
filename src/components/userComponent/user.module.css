@@ -89,3 +89,32 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.emailContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.emailContainer label{
+    font-size: 14px;
+}
+
+.checkboxArea{
+    position: absolute;
+    right: 38px;
+    top: 138px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.checkboxArea input{
+    width: 20px;
+    height: 20px;
+    cursor: pointer
+}
+
+.checkboxArea label{
+    cursor: pointer
+}

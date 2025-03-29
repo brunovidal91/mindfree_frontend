@@ -3,7 +3,7 @@ import "./globals.css";
 import { Toaster } from 'sonner';
 
 //Context
-import { MainContext } from '../context/index';
+// import { MainContext } from '../context/index';
 
 
 export const metadata: Metadata = {
@@ -18,7 +18,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <MainContext>
 
         <body>
           <Toaster
@@ -34,7 +33,6 @@ export default function RootLayout({
           {children}
         </body>
         
-      </MainContext>
     </html>
   );
 }

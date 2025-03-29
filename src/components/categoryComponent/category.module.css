@@ -20,6 +20,7 @@
     position: relative;
     border-radius: 5px;
     z-index: 4;
+    padding: 15px;
 
 }
 
@@ -28,4 +29,112 @@
     right: -10px;
     top: -10px;
     cursor: pointer;
+}
+
+.categoryFirstColumn{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-top: 30px;
+}
+
+.categoryFirstColumn div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.categoryFirstColumn div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categoryFirstColumn div:nth-child(3){
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.categoryFirstColumn label{
+    color: aliceblue;
+    margin-bottom: 3px;
+}
+
+.categoryFirstColumn input[type="checkbox"]{
+    width: 25px;
+    height: 25px;
+}
+.categoryFirstColumn input[type="number"]{
+    width: 40px;
+    height: 25px;
+    text-align: center;
+}
+
+.categoryFirstColumn input[type="text"]{
+    width: 350px;
+    height: 25px;
+    text-align: center;
+}
+
+.categorySecondColumn{
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
+
+}
+
+.categorySecondColumn label{
+    color: aliceblue;
+    margin-bottom: 3px;
+
+}
+
+.categorySecondColumn select{
+    width: 200px;
+}
+
+.categorySecondColumn input{
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #ffffdd;
+    margin-left: 30px;
+}
+
+.categorySecondColumn input:hover{
+    opacity: 0.80;
+}
+
+.categoryThirdColumn{
+    display:  flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-right: 80px;
+    padding-left: 80px;
+    margin-top: 100px;
+}
+
+.categoryThirdColumn input{
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.categoryThirdColumn input:hover{
+    opacity: 0.80;
+}
+
+.categoryThirdColumn input:nth-child(1){
+    background-color: #c0efd2;    
+}
+
+.categoryThirdColumn input:nth-child(2){
+    background-color: #e25858;
 }

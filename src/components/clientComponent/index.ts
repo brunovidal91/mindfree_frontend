@@ -28,7 +28,7 @@ export async function VerifyEmailAndPassword({email, password}: User){
           return;
         }
   
-        console.log(response.data);
+        // console.log(response.data);
   
   
       }catch(error){

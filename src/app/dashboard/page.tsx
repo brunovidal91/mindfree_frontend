@@ -10,28 +10,7 @@ import { Header } from '../../components/header';
 export default function Dashboard(){
 
     const [menu, setMenu] = useState("ExpandArrow");
-    // const [user, setUser] = useState({});
-    
 
-    // useEffect(() => {
-
-
-    //     async function getInfo(){
-
-    //         const response = await api.get("/me", {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`
-    //             }
-    //         });
-
-    //         setUser(response.data);
-
-
-    //     }
-
-    //     getInfo();
-
-    // },[]);
 
     return(
         <>

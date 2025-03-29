@@ -33,20 +33,7 @@ export default function Home() {
         email,
         password
       })
-
-      if(response.data.message){
-
-        if(String(response.data.message).match(/credential/)){
-
-          console.log("email ou senha incorretos");
-
-          return;
-        }
-        
-        console.log(response.data.message);
-        return;
-      }
-
+      
       if(!response.data.token){
         return;
       }
@@ -63,9 +50,6 @@ export default function Home() {
 
       // repassar os dados para o context --> salvar no localstorage
 
-    
-      
-
       const user = {
         id: response.data.id,
         name: response.data.name,
@@ -74,16 +58,9 @@ export default function Home() {
       }
 
       
-      
-    //  if( typeof window !== 'undefined'){
-    //   window.localStorage.setItem("@usr", JSON.stringify(user)); 
-    //   console.log("aki")
-    // } 
-
-
-
     }catch(error){
-      console.log("Ocorreu um erro: " + error);
+      const { response }: any = error;
+      console.log(response.data.message);
       return;
     }
 
