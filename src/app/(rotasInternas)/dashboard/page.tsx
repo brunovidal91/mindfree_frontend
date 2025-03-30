@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './dashboard.module.css';
 
-//Header
-import { Header } from '../../components/header'; 
 
 export default function Dashboard(){
 
@@ -13,8 +11,7 @@ export default function Dashboard(){
 
 
     return(
-        <>
-        <Header/>
+
         <main>
             <div className={styles.dropDown}>
                 <Image src={`/${menu}.png`} width={13} height={13} alt='menu'/>
@@ -33,7 +30,7 @@ export default function Dashboard(){
 
             </section>
         </main>
-        </>
+
     );
 }
  

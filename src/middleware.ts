@@ -21,6 +21,13 @@ export async function middleware(req: NextRequest) {
             return NextResponse.redirect( new URL("/", req.url));
         }
     }
+
+    if(pathname.startsWith("/transactions")){
+        if(!token){
+            return NextResponse.redirect( new URL("/", req.url));
+        }
+    }
+
     
     if(pathname.startsWith("/dashboard")){
         
@@ -30,6 +37,16 @@ export async function middleware(req: NextRequest) {
             return NextResponse.redirect( new URL("/", req.url));
         }
     }
+
+    if(pathname.startsWith("/transactions")){
+        
+
+        if(!check){
+           
+            return NextResponse.redirect( new URL("/", req.url));
+        }
+    }
+
 
 
 }

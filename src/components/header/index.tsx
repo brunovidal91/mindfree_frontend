@@ -9,7 +9,7 @@ import { CategoryModal } from '../categoryComponent';
 import { UserMeModal } from '../userComponent';
 
 import { handleLogout } from '../../utils/leave';
-
+import { usePathname } from 'next/navigation';
 
 //Context
 import { AppContext } from '../../context/index';
@@ -50,8 +50,9 @@ function Header(){
     const [showUserComponent, setShowUserComponent] = useState(false);
     const [showMe, setShowMe] = useState(false);
     const [user, setUser] = useState({id: "", name: "", email: "", createdAt: "", admin: false});
-    
 
+    
+    const currentRoute = usePathname();
     
 
 
@@ -150,14 +151,14 @@ function Header(){
                 <nav>
                     <ul className={styles.menu}>
                         <li><Link href="/dashboard">Dashboard</Link></li>
-                        <li><Link href="/dashboard">Lançamento</Link></li>
+                        <li><Link href="/transactions">Lançamento</Link></li>
                         <li>
-                            <Link href="/dashboard" onClick={handleOptions} >Cadastro</Link>
+                            <Link href="#" onClick={handleOptions} >Cadastro</Link>
 
                         {          
                                 showMenu &&        
                                 <ul className={styles.submenu}>
-                                    <li><Link href="/dashboard" onClick={openCategoryComponent}>Categorias</Link></li>
+                                    <li><Link href="#" onClick={openCategoryComponent}>Categorias</Link></li>
                                     <li><Link href="/dashboard" onClick={clickme}>Agendamentos</Link></li>
                                 </ul>
                         }
@@ -175,12 +176,12 @@ function Header(){
            
            user.admin?
            <div className={styles.navAdmContainer}>
-            <Link href="/dashboard">Usuários</Link>
+            <Link href="#">Usuários</Link>
             </div>
             : null
 }
             <div className={styles.navMeContainer} onClick={handleMe}>
-                <Link href="/dashboard" onClick={() => setMenu(menu == "ExpandArrow"? "CollapseArrow" : "ExpandArrow")}>
+                <Link href="#" onClick={() => setMenu(menu == "ExpandArrow"? "CollapseArrow" : "ExpandArrow")}>
                 <Image src={`/${menu}.png`} width={13} height={13} alt='menu'/>
                 <span>{user?.name}</span>
                 </Link>
