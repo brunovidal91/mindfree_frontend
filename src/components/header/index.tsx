@@ -46,10 +46,12 @@ function Header(){
 
     const [menu, setMenu] = useState("ExpandArrow");
     const [showMenu, setShowMenu] = useState(false);
+    const [showSubMenu, setShowSubMenu] = useState(false);
     const [showCategoryComponent, setShowCategoryComponent] = useState(false);
     const [showUserComponent, setShowUserComponent] = useState(false);
     const [showMe, setShowMe] = useState(false);
     const [user, setUser] = useState({id: "", name: "", email: "", createdAt: "", admin: false});
+    const [income, setIncome] = useState(false);
 
     
     const currentRoute = usePathname();
@@ -89,10 +91,17 @@ function Header(){
 
     const menuRef = useRef(null);
 
-    function handleOptions(){
-        setShowMenu(!showMenu);
+    function handleOpenMenu(){
+        setShowMenu(true);
+
 
     }
+
+    function handleOpenSubMenu(){
+        setShowSubMenu(true);
+
+    }
+
 
     function clickme(){
         console.log("deu certo")
@@ -101,14 +110,20 @@ function Header(){
     function handleClickOut(){
         setShowMenu(false);
         setShowMe(false);
+        setShowSubMenu(false);
         setMenu("ExpandArrow")
 
 
     }
  
     
-    function openCategoryComponent(){
+    function openCategoryComponent(income: boolean){
+        
+        const myIncome = income;
+
+        setIncome(myIncome);
         setShowMenu(false);
+        setShowSubMenu(false);
         setShowCategoryComponent(true);
     }
 
@@ -144,28 +159,41 @@ function Header(){
     return(
         <>
         <header>
-            <Link href="/"><Image src="/logo2.png" width={90} height={90} alt="logo"/></Link>
+            <Link href="/dashboard"><Image src="/logo2.png" width={90} height={90} alt="logo"/></Link>
             <div className={styles.navContainer}>
                 
 
                 <nav>
-                    <ul className={styles.menu}>
+                    <ul className={styles.menu} >
                         <li><Link href="/dashboard">Dashboard</Link></li>
                         <li><Link href="/transactions">Lançamento</Link></li>
                         <li>
-                            <Link href="#" onClick={handleOptions} >Cadastro</Link>
+                            <Link href="#" onMouseEnter={handleOpenMenu}  onClick={() => setShowMenu(true)}>Cadastro</Link>
 
                         {          
                                 showMenu &&        
                                 <ul className={styles.submenu}>
-                                    <li><Link href="#" onClick={openCategoryComponent}>Categorias</Link></li>
                                     <li><Link href="/dashboard" onClick={clickme}>Agendamentos</Link></li>
+                                    <li><Link href="#" onMouseEnter={handleOpenSubMenu} onClick={() => setShowSubMenu(!showSubMenu)}>Categorias</Link>
+                                        
+                                        {
+                                            showSubMenu &&
+
+                                            <ul className={styles.submenuCategories}>
+                                                <li><Link href="#" onClick={() => openCategoryComponent(true)}>Receitas <Image src="/upArrow.png" width={20} height={20} alt='receitas'/></Link></li>
+                                                <li><Link href="#" onClick={() => openCategoryComponent(false)}>Despesas <Image src="/downArrow.png" width={20} height={20} alt='despesas'/></Link></li>
+                                            </ul>
+                                        }
+
+
+                                    </li>
                                 </ul>
                         }
 
                         </li>
                     </ul>
                 </nav>
+
 
 
 
@@ -201,9 +229,9 @@ function Header(){
 
             
         </header>
-            {  (showMenu || showMe) && <div className={styles.back} onClick={handleClickOut}></div>}
+            {  (showMenu || showMe || showSubMenu) && <div className={styles.back} onClick={handleClickOut}></div>}
 
-            { showCategoryComponent && <CategoryModal close={closeCategoryComponent}/>}
+            { showCategoryComponent && <CategoryModal close={closeCategoryComponent} income={income}/>}
 
             { showUserComponent && <UserMeModal close={closeUserComponent} dados={user}/>}
         </>

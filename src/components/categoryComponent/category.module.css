@@ -24,6 +24,13 @@
 
 }
 
+.modalScreen h3{
+    margin: 0 auto;
+    text-align: center;
+    color: aliceblue;
+
+}
+
 .btnClose{
     position: absolute;
     right: -10px;
@@ -137,4 +144,11 @@
 
 .categoryThirdColumn input:nth-child(2){
     background-color: #e25858;
+}
+
+.legend{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 11px;
+    color: aliceblue;
 }

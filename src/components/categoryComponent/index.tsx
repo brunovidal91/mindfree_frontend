@@ -7,19 +7,21 @@ import { api } from '../../services/api';
 import { getCookieClient } from '../../lib/cookieClient';
 
 interface Props{
-    close: Function
+    close: Function,
+    income?: boolean
 }
 
 interface Category{
     id: number,
     title: string,
     isMonthly: boolean,
-    day: number
+    day: number,
+    isIncome: boolean,
 }
 
 
 
-export function CategoryModal({close}: Props){
+export function CategoryModal({close, income}: Props){
 
     //States
 
@@ -29,6 +31,7 @@ export function CategoryModal({close}: Props){
     const [categoryIsMonthly, setCategoryIsMonthly] = useState(false);
     const [categoryDay, setCategoryDay] = useState(30);
     const [createdItem, setCreatedItem] = useState(false);
+    const [categoryIsIncome, setCategoryIsIncome] = useState(income);
 
 
     //UseEffect
@@ -44,7 +47,12 @@ export function CategoryModal({close}: Props){
                     }
                 });
 
-                setCategoryList(response.data.sort((a: any,b: any) => a.title > b.title ? 1 : - 1));
+                const categoryTypeList = response.data.filter((item: any) => {
+                    return item.isIncome == income
+                })
+
+
+                setCategoryList(categoryTypeList.sort((a: any,b: any) => a.title > b.title ? 1 : - 1));
 
             }catch(error){
                 const { response }: any = error 
@@ -52,7 +60,13 @@ export function CategoryModal({close}: Props){
             }
         }
 
+        function getIncomeInfo(){
+            income && setCategoryIsIncome(income);
+        }
+
+        getIncomeInfo();
         getCategoryList();
+
 
     },[])
 
@@ -66,7 +80,11 @@ export function CategoryModal({close}: Props){
                     }
                 });
 
-                setCategoryList(response.data.sort((a: any,b: any) => a.title > b.title ? 1 : - 1));
+                const categoryTypeList = response.data.filter((item: any) => {
+                    return item.isIncome == income
+                })
+
+                setCategoryList(categoryTypeList.sort((a: any,b: any) => a.title > b.title ? 1 : - 1));
 
             }catch(error){
                 const { response }: any = error 
@@ -86,7 +104,7 @@ export function CategoryModal({close}: Props){
     function handleMonthly(){
         setCategoryIsMonthly(!categoryIsMonthly);
 
-        categoryDayRef?.current?.focus();
+        categoryIsMonthly ? categoryDayRef?.current?.focus() : null;
     }
 
     function handleCategoryList(e: any){
@@ -110,13 +128,15 @@ export function CategoryModal({close}: Props){
             id: item[0].id,
             title: item[0].title,
             isMonthly: item[0].isMonthly,
-            day: item[0].day == 0 ? 30 : item[0].day
+            day: item[0].day == 0 ? 30 : item[0].day,
+            isIncome: item[0].isIncome
         }
         
         setCategoryId(currentCategory.id ?? 0);
         setCategoryTitle(currentCategory.title ?? '');
         setCategoryIsMonthly(currentCategory.isMonthly ?? false);
         setCategoryDay(currentCategory.day ?? 30);
+        setCategoryIsIncome(currentCategory.isIncome);
         
 
     }
@@ -149,12 +169,14 @@ export function CategoryModal({close}: Props){
 
         if(!verify){
             // Cadastrando uma nova categoria
+
             try{
 
                 await api.post('/categories/add', {
                     title: categoryTitle,
                     isMonthly: categoryIsMonthly,
-                    day: categoryDay.toString()
+                    day: categoryDay.toString(),
+                    isIncome: categoryIsIncome
                 },
                 {
                     headers: {
@@ -222,11 +244,13 @@ export function CategoryModal({close}: Props){
             <div className={styles.modalScreen}>
                 <Image src="/Cancel.png" alt='close' width={30} height={30} className={styles.btnClose} onClick={() => close()}/>
 
+                <h3>{categoryIsIncome ? 'Receitas' : 'Despesas'}</h3>
+
                 <div className={styles.categoryFirstColumn}>
 
                     <div>
                         <label htmlFor="category">Nome da Categoria</label>
-                        <input type="text" id="category-input" name="category-input" maxLength={25} placeholder='Ex.: Mercado' value={categoryTitle} onChange={(e) => setCategoryTitle(e.target.value)} ref={categoryTitleRef}/>
+                        <input type="text" id="category-input" name="category-input" maxLength={25} placeholder={categoryIsIncome? 'Ex.: Pagamento':'Ex.: Mercado'} value={categoryTitle} onChange={(e) => setCategoryTitle(e.target.value)} ref={categoryTitleRef}/>
                     </div>
 
                     <div>
@@ -235,7 +259,7 @@ export function CategoryModal({close}: Props){
                     </div>
                     
                     <div>
-                        <label htmlFor="category">dia</label>
+                        <label htmlFor="category">dia venc.</label>
                         <input type="number" id="category-day" name="category-day" maxLength={2} min={1} max={31} disabled={!categoryIsMonthly} ref={categoryDayRef} value={categoryDay} onChange={(e) => setCategoryDay(Number(e.target.value))}/>
                     </div>
                 </div>
@@ -265,7 +289,6 @@ export function CategoryModal({close}: Props){
                     <input type="button" value="Salvar" onClick={handleAddCategory}/>
                     <input type="button" value="Excluir" onClick={handleDeleteCategory}/>
                 </div>
-
             </div>
         </div>
     );

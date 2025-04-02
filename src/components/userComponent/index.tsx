@@ -194,7 +194,7 @@ export function UserMeModal({close, dados}: Props){
                     <label className={styles.lblAddAt}>Criado em:&nbsp;&nbsp;{dados.createdAt}</label>
                     
                     <div>
-                        <input type="password" name="password" id="password" placeholder="senha atual" required onChange={(e) => setOldPass(e.target.value)} ref={inputOldPassRef}/>
+                        <input type="password" name="password" id="password" placeholder="senha atual" required onChange={(e) => setOldPass(e.target.value)} ref={inputOldPassRef} autoComplete='off' autoSave='off'/>
                         <input type="password" name="newPassword" id="newPassword" placeholder="nova senha"  onChange={(e) => setNewPass(e.target.value)}/>
 
                     </div>

@@ -60,11 +60,12 @@ export default function Home() {
       
     }catch(error){
       const { response }: any = error;
-      console.log(response.data.message);
+      if(response){
+
+        console.log(response.data.message);
+      }
       return;
     }
-
-
 
     redirect("/dashboard",)
   }
